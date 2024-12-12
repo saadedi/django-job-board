@@ -7,6 +7,13 @@ JOB_TYPE = (
     ('Part Time', 'Part Time'),
 )
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=120)    
+    
+    def __str__(self):
+        return self.name
+
 class Job(models.Model):
     title        = models.CharField(max_length=100)
     #location
@@ -16,7 +23,7 @@ class Job(models.Model):
     vacancy      = models.IntegerField(default=1)
     salary       = models.IntegerField(default=0)
     experionce   = models.IntegerField(default=1)
+    category     = models.ForeignKey(Category, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title
-    
